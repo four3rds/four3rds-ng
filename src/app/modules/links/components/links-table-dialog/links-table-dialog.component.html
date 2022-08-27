@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Links</h1>
+<div mat-dialog-content>
+  <table
+    mat-table
+    [dataSource]="links"
+    class="mat-elevation-z8"
+    *ngIf="links.length > 0"
+  >
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let link">{{ link.getId() }}</td>
+    </ng-container>
+
+    <!-- Category ID Column -->
+    <ng-container matColumnDef="categoryId">
+      <th mat-header-cell *matHeaderCellDef>Category ID</th>
+      <td mat-cell *matCellDef="let link">{{ link.getCategoryId() }}</td>
+    </ng-container>
+
+    <!-- Text Column -->
+    <ng-container matColumnDef="text">
+      <th mat-header-cell *matHeaderCellDef>Link Text</th>
+      <td mat-cell *matCellDef="let link">{{ link.getText() }}</td>
+    </ng-container>
+
+    <!-- URL Column -->
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef>URL</th>
+      <td mat-cell *matCellDef="let link">{{ link.getUrl() }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="add()">Add</button>
+  <button mat-button [mat-dialog-close]="">Cancel</button>
+  <button mat-button [mat-dialog-close]="'HHH'" cdkFocusInitial>Save</button>
+</div>

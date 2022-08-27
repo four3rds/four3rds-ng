@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Edit Link</h1>
+<div mat-dialog-content>
+  <div class="link-grid">
+    <mat-form-field appearance="standard">
+      <mat-label>Category</mat-label>
+      <input matInput placeholder="Category" [(ngModel)]="categoryId" />
+      <mat-hint>Select or enter category for link</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>Text</mat-label>
+      <input matInput placeholder="Text" [(ngModel)]="text" />
+      <mat-hint>Enter text to display for link</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>URL</mat-label>
+      <input matInput placeholder="URL" [(ngModel)]="url" />
+      <mat-hint>Enter link</mat-hint>
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="">Cancel</button>
+  <button mat-button [mat-dialog-close]="newLink()" cdkFocusInitial>
+    Save
+  </button>
+</div>

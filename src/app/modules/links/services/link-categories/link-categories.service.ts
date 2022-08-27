@@ -20,7 +20,7 @@ export class LinkCategoriesService {
   read(id?: string): Observable<LinkCategory> {
     return new Observable<LinkCategory>((observer) =>
       LocalStorageUtils.read(KEY, id).subscribe({
-        next: (v) => observer.next(v as unknown as LinkCategory),
+        next: (v) => observer.next(v as LinkCategory),
         error: (e) => observer.error(e),
         complete: () => observer.complete(),
       })

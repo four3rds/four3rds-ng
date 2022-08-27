@@ -62,9 +62,10 @@ export class LocalStorageUtils {
   }
 
   static read(key: string, id?: string): Observable<Entity> {
+    console.log('LocalStorageUtils::read::' + key + '::' + id);
     return new Observable<Entity>((observer) => {
       if (key && key.trim().length > 0) {
-        let entities = LocalStorageUtils.read(key.trim());
+        let entities = LocalStorageUtils.readLocalStorage(key.trim());
         entities.forEach((entity) => {
           if (!id || entity.getId() == id) observer.next(entity);
         });
@@ -78,7 +79,7 @@ export class LocalStorageUtils {
       if (key && key.trim().length > 0 && entity && entity.getId()) {
         let updated = false;
         let remainingEntities: Entity[] = [];
-        let originalEntities = LocalStorageUtils.read(key.trim());
+        let originalEntities = LocalStorageUtils.readLocalStorage(key.trim());
         let updatedEntities: Entity[] = [];
         originalEntities.forEach((originalEntity) => {
           updatedEntities.push(
