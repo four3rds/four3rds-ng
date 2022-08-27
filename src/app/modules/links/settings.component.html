@@ -1,0 +1,46 @@
+<div class="settings-grid">
+  <mat-form-field appearance="standard">
+    <mat-label>Header Text</mat-label>
+    <input
+      matInput
+      placeholder="Header Text"
+      [(ngModel)]="editedSettings.headerText"
+    />
+    <mat-hint
+      >Any text entered here will be displayed at the top of every
+      page</mat-hint
+    >
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>Footer Text</mat-label>
+    <input
+      matInput
+      placeholder="Footer Text"
+      [(ngModel)]="editedSettings.footerText"
+    />
+    <mat-hint
+      >Any text entered here will be displayed at the bottom of every
+      page</mat-hint
+    >
+  </mat-form-field>
+</div>
+<div class="ribbon">
+  <span class="spacer"></span>
+  <div class="button-container">
+    <button mat-mini-fab color="primary" (click)="delete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  &nbsp;
+  <div class="button-container">
+    <button mat-mini-fab color="primary" (click)="restore()">
+      <mat-icon>history</mat-icon>
+    </button>
+  </div>
+  &nbsp;
+  <div class="button-container">
+    <button mat-mini-fab color="primary" (click)="save()">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</div>

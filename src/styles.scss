@@ -1,4 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "~@angular/material/prebuilt-themes/indigo-pink";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 40px;
+}
+
+.ribbon {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
