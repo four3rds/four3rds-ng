@@ -3,7 +3,12 @@
   <div class="link-grid">
     <mat-form-field appearance="standard">
       <mat-label>Category</mat-label>
-      <input matInput placeholder="Category" [(ngModel)]="categoryId" />
+      <input
+        matInput
+        placeholder="Category"
+        [(ngModel)]="category"
+        cdkFocusInitial
+      />
       <mat-hint>Select or enter category for link</mat-hint>
     </mat-form-field>
     <mat-form-field appearance="standard">
@@ -18,9 +23,7 @@
     </mat-form-field>
   </div>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions [align]="'end'">
   <button mat-button [mat-dialog-close]="">Cancel</button>
-  <button mat-button [mat-dialog-close]="newLink()" cdkFocusInitial>
-    Save
-  </button>
+  <button mat-button (click)="save()">OK</button>
 </div>

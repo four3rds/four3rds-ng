@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { SettingsService } from 'src/app/shared/services/settings/settings.service';
 import { Settings } from './classes/Settings';
 
@@ -7,17 +7,24 @@ import { Settings } from './classes/Settings';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnDestroy {
+  private settingsSubscription;
+
   editedSettings: Settings = new Settings();
+
   originalSettings: Settings = new Settings();
 
   constructor(private settingsService: SettingsService) {
-    settingsService.getSettings().subscribe({
+    this.settingsSubscription = settingsService.getSettings().subscribe({
       next: (settings) => {
         this.originalSettings = settings;
         this.restore();
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.settingsSubscription.unsubscribe();
   }
 
   delete() {

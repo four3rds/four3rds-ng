@@ -1,6 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { SnackbarService } from 'src/app/core/services/snackbar/snackbar.service';
 import { Link } from '../../classes/Link';
+import { LinksService } from '../../services/links/links.service';
 import { LinkEditDialogComponent } from '../link-edit-dialog/link-edit-dialog.component';
 
 @Component({
@@ -8,42 +11,50 @@ import { LinkEditDialogComponent } from '../link-edit-dialog/link-edit-dialog.co
   templateUrl: './links-table-dialog.component.html',
   styleUrls: ['./links-table-dialog.component.scss'],
 })
-export class LinksTableDialogComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'categoryId', 'text', 'url'];
+export class LinksTableDialogComponent implements OnDestroy, OnInit {
+  displayedColumns: string[] = ['operations', 'category', 'text', 'url'];
   links: Link[] = [];
+  linksSubscription!: Subscription;
 
   constructor(
     private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: Link[]
+    private linksService: LinksService,
+    private snackBarService: SnackbarService
   ) {}
 
   add() {
-    this.dialog
-      .open(LinkEditDialogComponent, {
-        width: '80%',
-      })
-      .afterClosed()
-      .subscribe((link) => {
-        if (link) {
-          this.links.push(link);
-        }
-      });
+    this.dialog.open(LinkEditDialogComponent, {
+      width: '80%',
+      data: new Link('', '', '', ''),
+    });
+  }
+
+  delete(link: Link) {
+    console.log('LinksTableDialogComponent::delete::' + link.id);
+    this.linksService.delete(link.id).subscribe({
+      next: (deleted) =>
+        this.snackBarService.openSnackBar(link.text + ' deleted'),
+    });
+  }
+
+  edit(link: Link) {
+    console.log('LinksTableDialogComponent::edit::' + link.id);
+    this.dialog.open(LinkEditDialogComponent, {
+      width: '80%',
+      data: link,
+    });
+    console.log('LinksTableDialogComponent::edit::exit');
+  }
+
+  ngOnDestroy(): void {
+    if (this.linksSubscription) {
+      this.linksSubscription.unsubscribe();
+    }
   }
 
   ngOnInit(): void {
-    this.data.forEach((link) =>
-      this.links.push(
-        new Link(
-          link.getId(),
-          link.getCategoryId(),
-          link.getText(),
-          link.getUrl()
-        )
-      )
-    );
-  }
-
-  save() {
-    console.log('save()');
+    this.linksSubscription = this.linksService.getLinks().subscribe({
+      next: (links) => (this.links = links),
+    });
   }
 }
