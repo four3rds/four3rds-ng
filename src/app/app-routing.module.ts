@@ -8,13 +8,6 @@ const routes: Routes = [
       import('./modules/links/links.module').then((m) => m.LinksModule),
   },
   {
-    path: 'maintenance',
-    loadChildren: () =>
-      import('./modules/maintenance/maintenance.module').then(
-        (m) => m.MaintenanceModule
-      ),
-  },
-  {
     path: 'settings',
     loadChildren: () =>
       import('./modules/settings/settings.module').then(
