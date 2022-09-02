@@ -40,7 +40,13 @@ export class LinksComponent implements OnDestroy, OnInit {
   }
 
   getCategories(): string[] {
-    return Array.from(this.categorizedLinks.keys());
+    return Array.from(this.categorizedLinks.keys()).sort();
+  }
+
+  getCategorizedLinks(category: string): Link[] {
+    return this.categorizedLinks
+      .get(category)!
+      .sort((a, b) => a.text.localeCompare(b.text));
   }
 
   ngOnDestroy(): void {

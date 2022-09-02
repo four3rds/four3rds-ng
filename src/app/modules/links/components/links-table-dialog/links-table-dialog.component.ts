@@ -52,7 +52,14 @@ export class LinksTableDialogComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.linksSubscription = this.linksService.getLinks().subscribe({
-      next: (links) => (this.links = links),
+      next: (links) =>
+        (this.links = links.sort((a, b) => {
+          if (a.category.localeCompare(b.category) != 0) {
+            return a.category.localeCompare(b.category);
+          } else {
+            return a.text.localeCompare(b.text);
+          }
+        })),
     });
   }
 }
