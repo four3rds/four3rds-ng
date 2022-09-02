@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <div class="button-container">
+    <button mat-mini-fab color="primary" (click)="menuClicked.emit(true)">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <span class="spacer"></span>
+  <span class="truncated">{{ settings.headerText }}</span>
+  <span class="spacer"></span>
+  <div class="button-container">
+    <button mat-mini-fab color="basic" [routerLink]="['settings']">
+      <mat-icon>settings</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
