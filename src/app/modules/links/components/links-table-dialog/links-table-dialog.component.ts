@@ -24,7 +24,6 @@ export class LinksTableDialogComponent implements OnDestroy, OnInit {
 
   add() {
     this.dialog.open(LinkEditDialogComponent, {
-      width: '80%',
       data: new Link('', '', '', ''),
     });
   }
@@ -40,7 +39,6 @@ export class LinksTableDialogComponent implements OnDestroy, OnInit {
   edit(link: Link) {
     console.log('LinksTableDialogComponent::edit::' + link.id);
     this.dialog.open(LinkEditDialogComponent, {
-      width: '80%',
       data: link,
     });
     console.log('LinksTableDialogComponent::edit::exit');
