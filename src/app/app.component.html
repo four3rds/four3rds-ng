@@ -9,10 +9,15 @@
     </mat-toolbar>
     <mat-nav-list>
       <mat-list-item>
-        <a matLine [routerLink]="['links']">Links</a>
+        <a matLine [routerLink]="['']" (click)="sidenav.toggle()">Home</a>
       </mat-list-item>
       <mat-list-item>
-        <a matLine [routerLink]="['settings']">Settings</a>
+        <a matLine [routerLink]="['links']" (click)="sidenav.toggle()">Links</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a matLine [routerLink]="['settings']" (click)="sidenav.toggle()"
+          >Settings</a
+        >
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
