@@ -14,6 +14,7 @@ const routes: Routes = [
         (m) => m.SettingsModule
       ),
   },
+  { path: '', redirectTo: 'links', pathMatch: 'full' },
 ];
 
 @NgModule({
