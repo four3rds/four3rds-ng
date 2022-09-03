@@ -1,4 +1,4 @@
-<div *ngIf="categorizedLinks">
+<div *ngIf="!refreshing">
   <mat-card *ngFor="let category of getCategories()">
     <mat-card-title>{{ category }}</mat-card-title>
     <mat-card-content>

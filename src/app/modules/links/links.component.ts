@@ -13,30 +13,21 @@ import { LinksService } from './services/links/links.service';
 export class LinksComponent implements OnDestroy, OnInit {
   categorizedLinks = new Map<string, Link[]>();
   linksSubscription!: Subscription;
+  refreshing: boolean = true;
 
   constructor(private dialog: MatDialog, private linksService: LinksService) {}
 
   private refreshLinks(links: Link[]) {
-    console.log('LinksComponent::refreshLinks');
+    this.refreshing = true;
     this.categorizedLinks.clear();
     links.forEach((link) => {
-      // This is not the most-efficient way to do this, but it'll work for now.
-      console.log(
-        link.id + '::' + link.category + '::' + link.text + '::' + link.url
-      );
-      if (!this.categorizedLinks.has(link.category)) {
-        this.categorizedLinks.set(link.category, [link]);
-      } else {
+      if (this.categorizedLinks.has(link.category)) {
         this.categorizedLinks.get(link.category)!.push(link);
-        this.categorizedLinks
-          .get(link.category)!
-          .sort((a, b) => (a.text < b.text ? -1 : a.text > b.text ? 1 : 0));
+      } else {
+        this.categorizedLinks.set(link.category, [link]);
       }
     });
-    console.log(
-      'LinksComponent::refreshLinks::this.categorizedLinks.size::' +
-        this.categorizedLinks.size
-    );
+    this.refreshing = false;
   }
 
   getCategories(): string[] {
