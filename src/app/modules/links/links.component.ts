@@ -18,31 +18,23 @@ export class LinksComponent implements OnDestroy, OnInit {
   constructor(private dialog: MatDialog, private linksService: LinksService) {}
 
   private refreshLinks(links: Link[]) {
-    console.log('LinksComponent::refreshLinks');
-    console.log(links);
     this.refreshing = true;
     this.categorizedLinks.clear();
     links.forEach((link) => {
-      console.log('link =>' + link);
       if (this.categorizedLinks.has(link.category)) {
         this.categorizedLinks.get(link.category)!.push(link);
-        console.log('Link added to existing array');
       } else {
         this.categorizedLinks.set(link.category, [link]);
-        console.log('New array created for link');
       }
     });
-    console.log(this.categorizedLinks);
     this.refreshing = false;
   }
 
   getCategories(): string[] {
-    console.log('LinksComponent::getCategories');
     return Array.from(this.categorizedLinks.keys()).sort();
   }
 
   getCategorizedLinks(category: string): Link[] {
-    console.log('LinksComponent::getCategorizedLinks::' + category);
     return this.categorizedLinks
       .get(category)!
       .sort((a, b) => a.text.localeCompare(b.text));
