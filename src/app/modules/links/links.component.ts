@@ -18,6 +18,8 @@ export class LinksComponent implements OnDestroy, OnInit {
   constructor(private dialog: MatDialog, private linksService: LinksService) {}
 
   private refreshLinks(links: Link[]) {
+    console.log('LinksComponent::refreshLinks');
+    console.log(links);
     this.refreshing = true;
     this.categorizedLinks.clear();
     links.forEach((link) => {
@@ -27,6 +29,7 @@ export class LinksComponent implements OnDestroy, OnInit {
         this.categorizedLinks.set(link.category, [link]);
       }
     });
+    console.log(this.categorizedLinks);
     this.refreshing = false;
   }
 
