@@ -1,54 +1,44 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-import { Link } from './classes/Link';
+import { Link } from 'src/app/core/services/link/Link';
+import { LinkService } from 'src/app/core/services/link/link.service';
+import { Type } from 'src/app/core/services/type/Type';
+import {
+  PARENT_TYPE_LINK,
+  TypeService,
+} from 'src/app/core/services/type/type.service';
 import { LinksTableDialogComponent } from './components/links-table-dialog/links-table-dialog.component';
-import { LinksService } from './services/links/links.service';
 
 @Component({
   selector: 'app-links',
   templateUrl: './links.component.html',
   styleUrls: ['./links.component.scss'],
 })
-export class LinksComponent implements OnDestroy, OnInit {
-  categorizedLinks = new Map<string, Link[]>();
-  linksSubscription!: Subscription;
-  refreshing: boolean = true;
+export class LinksComponent implements OnInit {
+  linkTypes: Type[] = [];
+  linkTypesPopulated = false;
 
-  constructor(private dialog: MatDialog, private linksService: LinksService) {}
+  constructor(
+    private typesService: TypeService,
+    private linksService: LinkService,
+    private dialog: MatDialog
+  ) {}
 
-  private refreshLinks(links: Link[]) {
-    this.refreshing = true;
-    this.categorizedLinks.clear();
-    links.forEach((link) => {
-      if (this.categorizedLinks.has(link.category)) {
-        this.categorizedLinks.get(link.category)!.push(link);
-      } else {
-        this.categorizedLinks.set(link.category, [link]);
-      }
+  getLinksByType(typeId: string) {
+    const links: Link[] = [];
+    let complete = false;
+    this.linksService.getLinks(typeId).subscribe({
+      next: (v) => links.push(v),
+      complete: () => (complete = true),
     });
-    this.refreshing = false;
-  }
-
-  getCategories(): string[] {
-    return Array.from(this.categorizedLinks.keys()).sort();
-  }
-
-  getCategorizedLinks(category: string): Link[] {
-    return this.categorizedLinks
-      .get(category)!
-      .sort((a, b) => a.text.localeCompare(b.text));
-  }
-
-  ngOnDestroy(): void {
-    if (this.linksSubscription) {
-      this.linksSubscription.unsubscribe();
-    }
+    do {} while (!complete);
+    return links;
   }
 
   ngOnInit(): void {
-    this.linksSubscription = this.linksService.getLinks().subscribe({
-      next: (links) => this.refreshLinks(links),
+    this.typesService.getTypes(PARENT_TYPE_LINK).subscribe({
+      next: (v) => this.linkTypes.push(v),
+      complete: () => (this.linkTypesPopulated = true),
     });
   }
 

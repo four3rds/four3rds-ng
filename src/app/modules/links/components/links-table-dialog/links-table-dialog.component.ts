@@ -1,17 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-import { SnackbarService } from 'src/app/core/services/snackbar/snackbar.service';
-import { Link } from '../../classes/Link';
-import { LinksService } from '../../services/links/links.service';
-import { LinkEditDialogComponent } from '../link-edit-dialog/link-edit-dialog.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-links-table-dialog',
   templateUrl: './links-table-dialog.component.html',
   styleUrls: ['./links-table-dialog.component.scss'],
 })
-export class LinksTableDialogComponent implements OnDestroy, OnInit {
+export class LinksTableDialogComponent {
+  /*
   displayedColumns: string[] = ['operations', 'category', 'text', 'url'];
   links: Link[] = [];
   linksSubscription!: Subscription;
@@ -62,4 +57,5 @@ export class LinksTableDialogComponent implements OnDestroy, OnInit {
         })),
     });
   }
+  */
 }

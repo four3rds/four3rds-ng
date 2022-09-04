@@ -1,3 +1,4 @@
+<!--
 <h1 mat-dialog-title>Links</h1>
 <div mat-dialog-content>
   <table
@@ -29,19 +30,16 @@
       </td>
     </ng-container>
 
-    <!-- Category ID Column -->
     <ng-container matColumnDef="category">
       <th mat-header-cell *matHeaderCellDef>Category</th>
       <td mat-cell *matCellDef="let link">{{ link.category }}</td>
     </ng-container>
 
-    <!-- Text Column -->
     <ng-container matColumnDef="text">
       <th mat-header-cell *matHeaderCellDef>Link Text</th>
       <td mat-cell *matCellDef="let link">{{ link.text }}</td>
     </ng-container>
 
-    <!-- URL Column -->
     <ng-container matColumnDef="url">
       <th mat-header-cell *matHeaderCellDef>URL</th>
       <td mat-cell *matCellDef="let link">{{ link.url }}</td>
@@ -55,3 +53,4 @@
   <button mat-button (click)="add()">Add</button>
   <button mat-button [mat-dialog-close]="" cdkFocusInitial>Close</button>
 </div>
+-->

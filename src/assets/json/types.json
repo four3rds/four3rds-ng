@@ -1,0 +1,9 @@
+{
+  "data": [
+    { "id": "1", "name": "Link" },
+    { "id": "2", "name": "Entertainment", "parentId": "1" },
+    { "id": "3", "name": "Finance", "parentId": "1" },
+    { "id": "4", "name": "News", "parentId": "1" },
+    { "id": "5", "name": "Shopping", "parentId": "1" }
+  ]
+}
