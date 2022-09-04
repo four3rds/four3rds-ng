@@ -1,0 +1,70 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "typeId": "2",
+      "text": "IMDB",
+      "url": "https://www.imdb.com"
+    },
+    {
+      "id": "2",
+      "typeId": "2",
+      "text": "YouTube",
+      "url": "https://www.youtube.com"
+    },
+    {
+      "id": "3",
+      "typeId": "3",
+      "text": "CNBC",
+      "url": "https://www.cnbc.com"
+    },
+    {
+      "id": "4",
+      "typeId": "3",
+      "text": "Yahoo Finance",
+      "url": "https://finance.yahoo.com"
+    },
+    {
+      "id": "5",
+      "typeId": "4",
+      "text": "American Thinker",
+      "url": "https://www.americanthinker.com"
+    },
+    {
+      "id": "6",
+      "typeId": "4",
+      "text": "Citizen Free Press",
+      "url": "https://www.citizenfreepress.com"
+    },
+    {
+      "id": "7",
+      "typeId": "4",
+      "text": "Fox News",
+      "url": "https://www.foxnews.com"
+    },
+    {
+      "id": "8",
+      "typeId": "4",
+      "text": "Gateway Pundit",
+      "url": "https://www.thegatewaypundit.com"
+    },
+    {
+      "id": "9",
+      "typeId": "5",
+      "text": "Amazon",
+      "url": "https://www.amazon.com"
+    },
+    {
+      "id": "10",
+      "typeId": "5",
+      "text": "Deal News",
+      "url": "https://www.dealnews.com"
+    },
+    {
+      "id": "11",
+      "typeId": "5",
+      "text": "Slick Deals",
+      "url": "https://www.slickdeals.net"
+    }
+  ]
+}

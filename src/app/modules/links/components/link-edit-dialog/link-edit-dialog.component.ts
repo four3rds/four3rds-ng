@@ -1,8 +1,4 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SnackbarService } from 'src/app/core/services/snackbar/snackbar.service';
-import { Link } from '../../classes/Link';
-import { LinksService } from '../../services/links/links.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-link-edit-dialog',
@@ -10,6 +6,7 @@ import { LinksService } from '../../services/links/links.service';
   styleUrls: ['./link-edit-dialog.component.scss'],
 })
 export class LinkEditDialogComponent {
+  /*
   category: string;
   id: string;
   text: string;
@@ -48,4 +45,5 @@ export class LinkEditDialogComponent {
     }
     console.log('LinkEditDialogComponent::save::exit');
   }
+  */
 }
