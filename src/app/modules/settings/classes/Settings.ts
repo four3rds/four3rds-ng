@@ -1,6 +1,6 @@
 export class Settings {
-  footerText: string = 'Default Footer Text -- Change in Settings';
-  headerText: string = 'Default Header Text -- Change in Settings';
+  footerText: string = "Let's Ride";
+  headerText: string = 'Four3rds';
 
   constructor(settings?: Settings) {
     if (settings) {
